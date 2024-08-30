@@ -33,7 +33,6 @@ namespace Company.Web
 
             app.Run();
 
-            Console.WriteLine("Testtt05");
         }
     }
 }
