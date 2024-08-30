@@ -11,8 +11,11 @@ namespace Company.Repository.Repositories
 {
     public class DepartmentRepository : GenericRepoistory<Department> , IDepartmentRepository
     {
+        private readonly CompanyDbContext _context;
+
         public DepartmentRepository(CompanyDbContext context) : base(context) 
         {
+            _context = context;
         }
     }
 }
