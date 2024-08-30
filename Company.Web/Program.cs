@@ -32,6 +32,8 @@ namespace Company.Web
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
+            Console.WriteLine("Testtt05");
         }
     }
 }
