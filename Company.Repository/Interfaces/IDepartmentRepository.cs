@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Company.Repository.Interfaces
 {
-    public interface IEmployeeRepository : IGenericRepoistory<Employee>
+    public interface IDepartmentRepository : IGenericRepoistory<Department>
     {
-        Employee GetEmployeeByName (string name);
-        IEnumerable<Employee> GetEmployeesByAddress (string address);
+      
     }
 }
