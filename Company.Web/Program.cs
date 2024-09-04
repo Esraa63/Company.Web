@@ -20,7 +20,8 @@ namespace Company.Web
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefultConnection"));
             });
-            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
             var app = builder.Build();
 
