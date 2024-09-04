@@ -19,8 +19,8 @@ namespace Company.Repository.Repositories
             DepartmentRepository = new DepartmentRepository(context);
             EmployeeRepository = new EmployeeRepository(context);   
         }
-        public IDepartmentRepository DepartmentRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEmployeeRepository EmployeeRepository { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IDepartmentRepository DepartmentRepository { get; set ; }
+        public IEmployeeRepository EmployeeRepository { get ; set ; }
 
         public int Complete() => _context.SaveChanges();
         

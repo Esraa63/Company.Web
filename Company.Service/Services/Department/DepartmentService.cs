@@ -1,5 +1,6 @@
 ﻿using Company.Data.Entitis;
 using Company.Repository.Interfaces;
+using Company.Repository.Repositories;
 using Company.Service.InterFaces;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace Company.Service.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        private readonly IDepartmentRepository _departmentRepository;
-        public DepartmentService(IDepartmentRepository departmentRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public DepartmentService(IUnitOfWork unitOfWork)
         {
-            _departmentRepository = departmentRepository;
+            _unitOfWork = unitOfWork;
         }
         public void Add(Department department)
         {
@@ -24,17 +25,19 @@ namespace Company.Service.Services
                 Name = department.Name,
                 CreateAt = DateTime.Now
             };
-            _departmentRepository.Add(mappedDepartment);
+            _unitOfWork.DepartmentRepository.Add(mappedDepartment);
+            _unitOfWork.Complete();
         }
 
         public void Delete(Department department)
         {
-            _departmentRepository.Delete(department);
+            _unitOfWork.DepartmentRepository.Delete(department);
+            _unitOfWork.Complete();
         }
 
         public IEnumerable<Department> GetAll()
         {
-            var departments = _departmentRepository.GetAll();
+            var departments = _unitOfWork.DepartmentRepository.GetAll();
             return departments;
         }
 
@@ -42,7 +45,7 @@ namespace Company.Service.Services
         {
             if (id is null)
                 return null;
-            var department = _departmentRepository.GetById(id.Value);
+            var department = _unitOfWork.DepartmentRepository.GetById(id.Value);
             if (department is null)
                 return null;
             return department;
@@ -50,7 +53,8 @@ namespace Company.Service.Services
 
         public void Update(Department department)
         {
-           _departmentRepository.Update(department);
+            _unitOfWork.DepartmentRepository.Update(department);
+            _unitOfWork.Complete();
         }
     }
 }

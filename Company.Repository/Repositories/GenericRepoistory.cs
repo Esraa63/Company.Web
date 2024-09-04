@@ -19,17 +19,20 @@ namespace Company.Repository.Repositories
         }
         public void Add(T entity)=>
             _context.Set<T>().Add(entity);
-        public void Delete(T entity)=> _context.Set<T>().Remove(entity);
+        public void Delete(T entity)=>
+            _context.Set<T>().Remove(entity);
         
 
         public IEnumerable<T> GetAll()=> 
             _context.Set<T>().ToList();
         
 
-        public T GetById(int id)=> _context.Set<T>().Find(id);
+        public T GetById(int id)=>
+            _context.Set<T>().Find(id);
           
 
-        public void Update(T entity)=>  _context.Set<T>().Update(entity);
+        public void Update(T entity)=>  
+            _context.Set<T>().Update(entity);
         
     }
 }
