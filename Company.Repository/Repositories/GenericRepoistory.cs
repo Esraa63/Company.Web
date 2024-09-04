@@ -27,7 +27,8 @@ namespace Company.Repository.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()=>  _context.Set<T>().ToList();
+        public IEnumerable<T> GetAll()=> 
+            _context.Set<T>().ToList();
         
 
         public T GetById(int id)=> _context.Set<T>().Find(id);

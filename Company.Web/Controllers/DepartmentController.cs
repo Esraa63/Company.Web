@@ -65,5 +65,14 @@ namespace Company.Web.Controllers
                 _departmentService.Update(department);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Delete(int id) 
+        {
+            var department = _departmentService.GetById(id);
+
+            if (department is null)
+                return RedirectToAction("NotFoundPage", null, "Home");
+            _departmentService.Delete(department);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
