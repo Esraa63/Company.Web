@@ -1,3 +1,8 @@
+using Company.Data.Contexts;
+using Company.Repository.Repositories;
+using Company.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace Company.Web
 {
     public class Program
@@ -9,7 +14,12 @@ namespace Company.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<CompanyDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefultConnection"));
+            });
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,7 +40,7 @@ namespace Company.Web
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            Console.WriteLine("Test0");
             app.Run();
 
         }
