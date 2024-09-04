@@ -43,5 +43,13 @@ namespace Company.Web.Controllers
             }
          
         }
+        public IActionResult Details(int? id) 
+        {
+            var department =_departmentService.GetById(id);
+            if (department is null)
+                return RedirectToAction("NotFoundPage",null,"Home");
+
+                return View(department);
+        }
     }
 }
