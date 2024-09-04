@@ -40,7 +40,7 @@ namespace Company.Web
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            Console.WriteLine("Test0");
             app.Run();
 
         }
