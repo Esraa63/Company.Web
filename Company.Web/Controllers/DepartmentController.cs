@@ -1,4 +1,5 @@
-﻿using Company.Repository.Interfaces;
+﻿using Company.Data.Entitis;
+using Company.Repository.Interfaces;
 using Company.Service.InterFaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,31 @@ namespace Company.Web.Controllers
         {
             var departments = _departmentService.GetAll();
             return View(departments);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Department department)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _departmentService.Add(department);
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("DepartmentError", "Validation Errors");
+                return View(department);
+            }
+            catch (Exception ex)
+            {
+
+                ModelState.AddModelError("DepartmentError", ex.Message);
+                return View(department);
+            }
+         
         }
     }
 }
