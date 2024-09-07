@@ -1,4 +1,4 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

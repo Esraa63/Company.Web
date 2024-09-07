@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Company.Data.Entitis
+namespace Company.Data.Entites
 {
     public class Department:BaseEntity
     {

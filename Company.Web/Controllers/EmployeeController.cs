@@ -1,4 +1,4 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 using Company.Service.InterFaces;
 using Company.Service.InterFaces.Employee.Dto;
 using Company.Web.Models;

@@ -1,7 +1,8 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 using Company.Repository.Interfaces;
 using Company.Service.InterFaces;
 using Company.Service.InterFaces.Department.Dto;
+using Company.Service.InterFaces.Employee.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,18 +44,30 @@ namespace Company.Service.Services
 
         public IEnumerable<DepartmentDto> GetAll()
         {
-            //var departments = _unitOfWork.DepartmentRepository.GetAll();
-            //return departments;
+            var departments = _unitOfWork.DepartmentRepository.GetAll(); ;
+            var mappedDepartments = departments.Select(x => new DepartmentDto
+            {
+                Code= x.Code,
+                Name= x.Name,
+                CreateAt= x.CreateAt
+            });
+            return mappedDepartments;
         }
 
-        public Department GetById(int? id)
+        public DepartmentDto GetById(int? id)
         {
             if (id is null)
                 return null;
             var department = _unitOfWork.DepartmentRepository.GetById(id.Value);
             if (department is null)
                 return null;
-            return department;
+            DepartmentDto departmentDto = new DepartmentDto
+            {
+                Code= department.Code,
+                Name= department.Name,
+                CreateAt = department.CreateAt
+            };
+            return departmentDto;
         }
 
         public void Update(DepartmentDto department)
@@ -63,9 +76,5 @@ namespace Company.Service.Services
             //_unitOfWork.Complete();
         }
 
-        DepartmentDto IDepartmentService.GetById(int? id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

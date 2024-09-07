@@ -1,4 +1,4 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 using Company.Service.InterFaces.Department.Dto;
 using System;
 using System.Collections.Generic;
