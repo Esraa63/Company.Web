@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Company.Data.Entites;
 using Company.Repository.Interfaces;
+using Company.Service.Helper;
 using Company.Service.InterFaces;
 using Company.Service.InterFaces.Employee.Dto;
 using System;
@@ -36,6 +37,8 @@ namespace Company.Service.Services
             //    PhoneNumber = employeeDto.PhoneNumber,
             //    Salary = employeeDto.Salary
             //};
+
+            employeeDto.ImageaUrl = DocumentSettings.UploadFile(employeeDto.Image, "Iamges");
             Employee employee = _mapper.Map<Employee>(employeeDto);       
             _unitOfWork.EmployeeRepository.Add(employee);
             _unitOfWork.Complete();
