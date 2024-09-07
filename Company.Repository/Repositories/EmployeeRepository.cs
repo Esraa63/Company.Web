@@ -1,5 +1,5 @@
 ﻿using Company.Data.Contexts;
-using Company.Data.Entitis;
+using Company.Data.Entites;
 using Company.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,18 @@ namespace Company.Repository.Repositories
 {
     public class EmployeeRepository : GenericRepoistory<Employee> , IEmployeeRepository
     {
+        private readonly CompanyDbContext _context;
+
         public EmployeeRepository(CompanyDbContext context) : base(context)
         {
+            _context = context;
         }
 
-        public Employee GetEmployeeByName(string name)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Employee> GetEmployeeByName(string name)
+        => _context.Employees.Where(x => x.Name.Trim().ToLower().
+        Contains(name.Trim().ToLower())
+            || x.Email.Trim().ToLower().Contains(name.Trim().ToLower())
+        ||x.PhoneNumber.Trim().ToLower().Contains(name.Trim().ToLower()) ).ToList();
 
         public IEnumerable<Employee> GetEmployeesByAddress(string address)
         {

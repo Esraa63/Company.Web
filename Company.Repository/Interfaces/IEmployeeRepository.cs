@@ -1,4 +1,4 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Company.Repository.Interfaces
 {
     public interface IEmployeeRepository : IGenericRepoistory<Employee>
     {
-        Employee GetEmployeeByName (string name);
+        IEnumerable<Employee> GetEmployeeByName (string name);
         IEnumerable<Employee> GetEmployeesByAddress (string address);
     }
 }

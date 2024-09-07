@@ -1,6 +1,6 @@
 ﻿
 
-namespace Company.Data.Entitis
+namespace Company.Data.Entites
 {
     public class BaseEntity
     {

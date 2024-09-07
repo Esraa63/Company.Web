@@ -4,6 +4,9 @@ using Company.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Company.Service.InterFaces;
 using Company.Service.Services;
+using Company.Service.Mapping;
+using Company.Data.Entites;
+using Company.Service.Mapping;
 
 namespace Company.Web
 {
@@ -23,6 +26,11 @@ namespace Company.Web
             //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+           
+            builder.Services.AddAutoMapper(x => x.AddProfile(new EmployeeProfile()));
+            builder.Services.AddAutoMapper(x => x.AddProfile(new DepartmentProfile()));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
