@@ -2,10 +2,19 @@
 @{
     ViewData["Tilte"] = "Create";
 }
+
 <h>Craete New Employee</h>
 <br />
 <br />
-
+<div class="mt-5 alert alert-danger">
+    <h3> @ViewBag.Message </h3>
+</div>
+<div class="mt-5 alert alert-primary">
+    <h3> @ViewData["TextMessage"] </h3>
+</div>
+<div class="mt-5 alert alert-dark">
+    <h3> @TempData["TempTextMessage"] </h3>
+</div>
 <form asp-action="Create">
     <div class="form-group">
         <label class="col-form-label" asp-for="Name"></label>
@@ -48,7 +57,7 @@
             <option value="@null">--select department</option>
         </select>
      </div> *@
-    <div class="form-group my-4">
+    <div class="form-group my-5">
         <label class="col-form-label" asp-for="ImageUrl"></label>
     <input type="file" class="form-control-file" asp-for="ImageUrl" />
     </div>
