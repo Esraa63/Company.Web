@@ -1,4 +1,5 @@
-﻿using Company.Service.InterFaces;
+﻿using Company.Data.Entitis;
+using Company.Service.InterFaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -25,11 +26,29 @@ namespace Company.Web.Controllers
                 return View(employees);
             }
         }
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-
-        //}
+        [HttpGet]
+        public IActionResult Create(Employee employee)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _employeeService.Add(employee);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                  //  ModelState.AddModelError("EmployeeError", "ValidationError");
+                    return View(employee);
+                }
+            }
+            catch (Exception ex) 
+            {
+               // ModelState.AddModelError("EmployeeError", ex.Message);
+                return View(employee);
+            }
+           
+        }
         //[HttpPost]
         //public IActionResult Update()
         //{
