@@ -18,8 +18,8 @@ namespace Company.Web.Controllers
         public IActionResult Index( string searchIndex)
         {
             //ViewBag , ViewData , TempData
-            ViewBag.Message = "Hello From Employee Index (View Bag)";
-            ViewData["TextMessage"]= "Hello From Employee Index (View Data)";
+            //ViewBag.Message = "Hello From Employee Index (View Bag)";
+            //ViewData["TextMessage"]= "Hello From Employee Index (View Data)";
             
             IEnumerable<Employee> employees = new List<Employee>();
             if (string.IsNullOrEmpty(searchIndex))
@@ -33,7 +33,7 @@ namespace Company.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var departments = _departmentService.GetAll();
+            ViewBag.departments = _departmentService.GetAll();
             return View();
         }
         [HttpPost]

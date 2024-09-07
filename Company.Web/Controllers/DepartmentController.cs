@@ -16,7 +16,7 @@ namespace Company.Web.Controllers
         public IActionResult Index()
         {
             var departments = _departmentService.GetAll();
-            TempData.Keep("TempTextMessage");
+           // TempData.Keep("TempTextMessage");
             return View(departments);
         }
         public IActionResult Create()
