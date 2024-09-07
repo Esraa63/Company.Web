@@ -16,7 +16,6 @@ namespace Company.Web.Controllers
             _employeeService = employeeService;
             _departmentService = departmentService;
         }
-        [HttpGet]
         public IActionResult Index( string searchIndex)
         {
             //ViewBag , ViewData , TempData

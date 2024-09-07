@@ -17,7 +17,7 @@
 <div class="mt-5 alert alert-dark">
     <h3> @TempData["TempTextMessage"] </h3>
 </div> *@
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="form-group">
         <label class="col-form-label" asp-for="Name"></label>
         <input type="text" asp-for="Name" class="form-control" />
@@ -59,7 +59,7 @@
     <div class="form-group my-5">
         <label class="col-form-label" asp-for="ImageUrl"></label>
 
-        <input type="file" class="form-control-file" asp-for="ImageUrl" />
+        <input type="file" class="form-control-file" asp-for="Image" />
     </div>
 
     @Html.ValidationSummary(true, "EmployeeError")
