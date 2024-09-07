@@ -1,4 +1,4 @@
-﻿@model Employee
+﻿@model EmployeeDto
 @{
     ViewData["Tilte"] = "Create";
 }
@@ -63,6 +63,7 @@
 
     <div class="form-group my-5">
         <label class="col-form-label" asp-for="ImageUrl"></label>
+       
     <input type="file" class="form-control-file" asp-for="ImageUrl" />
     </div>
 

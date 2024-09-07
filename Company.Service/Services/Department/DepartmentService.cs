@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entitis;
 using Company.Repository.Interfaces;
 using Company.Service.InterFaces;
+using Company.Service.InterFaces.Department.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,28 +17,34 @@ namespace Company.Service.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public void Add(Department department)
+        public void Add(DepartmentDto departmentDto)
         {
             var mappedDepartment = new Department
             {
-                Code = department.Code,
-                Name = department.Name,
+                Code = departmentDto.Code,
+                Name = departmentDto.Name,
                 CreateAt = DateTime.Now
             };
             _unitOfWork.DepartmentRepository.Add(mappedDepartment);
             _unitOfWork.Complete();
         }
 
-        public void Delete(Department department)
+        public void Delete(DepartmentDto departmentDto)
         {
-            _unitOfWork.DepartmentRepository.Delete(department);
+            var mappedDepartment = new Department
+            {
+                Code = departmentDto.Code,
+                Name = departmentDto.Name,
+                CreateAt = DateTime.Now
+            };
+            _unitOfWork.DepartmentRepository.Delete(mappedDepartment);
             _unitOfWork.Complete();
         }
 
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<DepartmentDto> GetAll()
         {
-            var departments = _unitOfWork.DepartmentRepository.GetAll();
-            return departments;
+            //var departments = _unitOfWork.DepartmentRepository.GetAll();
+            //return departments;
         }
 
         public Department GetById(int? id)
@@ -50,10 +57,15 @@ namespace Company.Service.Services
             return department;
         }
 
-        public void Update(Department department)
+        public void Update(DepartmentDto department)
         {
-            _unitOfWork.DepartmentRepository.Update(department);
-            _unitOfWork.Complete();
+            //_unitOfWork.DepartmentRepository.Update(department);
+            //_unitOfWork.Complete();
+        }
+
+        DepartmentDto IDepartmentService.GetById(int? id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

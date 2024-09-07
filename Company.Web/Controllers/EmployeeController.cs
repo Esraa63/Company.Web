@@ -1,5 +1,7 @@
 ﻿using Company.Data.Entitis;
 using Company.Service.InterFaces;
+using Company.Service.InterFaces.Employee.Dto;
+using Company.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -21,7 +23,7 @@ namespace Company.Web.Controllers
             //ViewBag.Message = "Hello From Employee Index (View Bag)";
             //ViewData["TextMessage"]= "Hello From Employee Index (View Data)";
             
-            IEnumerable<Employee> employees = new List<Employee>();
+            IEnumerable<EmployeeDto> employees = new List<EmployeeDto>();
             if (string.IsNullOrEmpty(searchIndex))
                 employees = _employeeService.GetAll();
             else
@@ -37,7 +39,7 @@ namespace Company.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Employee employee)
+        public IActionResult Create(EmployeeDto employee)
         {
             try
             {

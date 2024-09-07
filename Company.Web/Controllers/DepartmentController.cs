@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entitis;
 using Company.Repository.Interfaces;
 using Company.Service.InterFaces;
+using Company.Service.InterFaces.Department.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Company.Web.Controllers
@@ -24,7 +25,7 @@ namespace Company.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Department department)
+        public IActionResult Create(DepartmentDto department)
         {
             try
             {
