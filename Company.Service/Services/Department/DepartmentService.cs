@@ -1,6 +1,5 @@
 ﻿using Company.Data.Entitis;
 using Company.Repository.Interfaces;
-using Company.Repository.Repositories;
 using Company.Service.InterFaces;
 using System;
 using System.Collections.Generic;
