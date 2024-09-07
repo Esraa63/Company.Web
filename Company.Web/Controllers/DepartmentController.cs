@@ -25,24 +25,24 @@ namespace Company.Web.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(DepartmentDto department)
+        public IActionResult Create(DepartmentDto departmentDto)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _departmentService.Add(department);
+                    _departmentService.Add(departmentDto);
                     TempData["TempTextMessage"] = "Hello From Employee Index (Temp Data)";
                     return RedirectToAction("Index");
                 }
                 ModelState.AddModelError("DepartmentError", "Validation Errors");
-                return View(department);
+                return View(departmentDto);
             }
             catch (Exception ex)
             {
 
                 ModelState.AddModelError("DepartmentError", ex.Message);
-                return View(department);
+                return View(departmentDto);
             }
          
         }

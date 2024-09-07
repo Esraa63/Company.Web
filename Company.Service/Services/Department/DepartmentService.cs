@@ -1,4 +1,5 @@
-﻿using Company.Data.Entites;
+﻿using AutoMapper;
+using Company.Data.Entites;
 using Company.Repository.Interfaces;
 using Company.Service.InterFaces;
 using Company.Service.InterFaces.Department.Dto;
@@ -14,30 +15,35 @@ namespace Company.Service.Services
     public class DepartmentService : IDepartmentService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DepartmentService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+
+        public DepartmentService(IUnitOfWork unitOfWork , IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         public void Add(DepartmentDto departmentDto)
         {
-            var mappedDepartment = new Department
-            {
-                Code = departmentDto.Code,
-                Name = departmentDto.Name,
-                CreateAt = DateTime.Now
-            };
+            //var mappedDepartment = new Department
+            //{
+            //    Code = departmentDto.Code,
+            //    Name = departmentDto.Name,
+            //    CreateAt = DateTime.Now
+            //};
+            var mappedDepartment = _mapper.Map<Department>(departmentDto);
             _unitOfWork.DepartmentRepository.Add(mappedDepartment);
             _unitOfWork.Complete();
         }
-
+       
         public void Delete(DepartmentDto departmentDto)
         {
-            var mappedDepartment = new Department
-            {
-                Code = departmentDto.Code,
-                Name = departmentDto.Name,
-                CreateAt = DateTime.Now
-            };
+            //var mappedDepartment = new Department
+            //{
+            //    Code = departmentDto.Code,
+            //    Name = departmentDto.Name,
+            //    CreateAt = DateTime.Now
+            //};
+            var mappedDepartment = _mapper.Map<Department>(departmentDto);
             _unitOfWork.DepartmentRepository.Delete(mappedDepartment);
             _unitOfWork.Complete();
         }
@@ -45,12 +51,13 @@ namespace Company.Service.Services
         public IEnumerable<DepartmentDto> GetAll()
         {
             var departments = _unitOfWork.DepartmentRepository.GetAll(); ;
-            var mappedDepartments = departments.Select(x => new DepartmentDto
-            {
-                Code= x.Code,
-                Name= x.Name,
-                CreateAt= x.CreateAt
-            });
+            //var mappedDepartments = departments.Select(x => new DepartmentDto
+            //{
+            //    Code= x.Code,
+            //    Name= x.Name,
+            //    CreateAt= x.CreateAt
+            //});
+            var mappedDepartments =_mapper.Map<IEnumerable<DepartmentDto>>(departments);
             return mappedDepartments;
         }
 
@@ -61,13 +68,14 @@ namespace Company.Service.Services
             var department = _unitOfWork.DepartmentRepository.GetById(id.Value);
             if (department is null)
                 return null;
-            DepartmentDto departmentDto = new DepartmentDto
-            {
-                Code= department.Code,
-                Name= department.Name,
-                CreateAt = department.CreateAt
-            };
-            return departmentDto;
+            //DepartmentDto departmentDto = new DepartmentDto
+            //{
+            //    Code= department.Code,
+            //    Name= department.Name,
+            //    CreateAt = department.CreateAt
+            //};
+            var mappedDepartments = _mapper.Map<DepartmentDto>(department);
+            return mappedDepartments;
         }
 
         public void Update(DepartmentDto department)

@@ -18,7 +18,7 @@ namespace Company.Service.InterFaces.Employee.Dto
         public string PhoneNumber { get; set; }
         public DateTime HiringDate { get; set; }
         public IFormFile Image { get; set; }
-        public string ImageaUrl { get; set; }
+        public string ImageUrl { get; set; }
         public EmployeeDto Department { get; set; }
         public DateTime CreateAt { get; set; }
         public int? DepartmentId { get; set; }

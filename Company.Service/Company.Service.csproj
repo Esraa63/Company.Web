@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Company.Repository\Company.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mapping\Department\" />
-  </ItemGroup>
-
 </Project>

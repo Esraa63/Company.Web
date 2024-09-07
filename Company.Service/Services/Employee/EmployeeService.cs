@@ -38,7 +38,7 @@ namespace Company.Service.Services
             //    Salary = employeeDto.Salary
             //};
 
-            employeeDto.ImageaUrl = DocumentSettings.UploadFile(employeeDto.Image, "Iamges");
+            employeeDto.ImageUrl = DocumentSettings.UploadFile(employeeDto.Image, "Iamges");
             Employee employee = _mapper.Map<Employee>(employeeDto);       
             _unitOfWork.EmployeeRepository.Add(employee);
             _unitOfWork.Complete();
