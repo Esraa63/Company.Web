@@ -3,9 +3,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-@* <div class="mt-5 alert alert-dark">
-    <h3> @TempData["TempTextMessage"] </h3>
-</div> *@
 <a asp-controller="Department" asp-action="Create" class="btn btn-primary">Craete New Department</a>
 @if (Model.Count() > 0)
 {
@@ -29,7 +26,6 @@
                     <td>@department.CreateAt</td>
                     <partial model="@department.Id" name="_ActionButtonsPartialView" />
                 </tr>
-
             }
         </tbody>
 

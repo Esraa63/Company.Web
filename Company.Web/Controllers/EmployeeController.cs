@@ -10,7 +10,6 @@ namespace Company.Web.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IDepartmentService _departmentService;
-
         public EmployeeController(IEmployeeService employeeService , IDepartmentService departmentService)
         {
             _employeeService = employeeService;
@@ -34,29 +33,30 @@ namespace Company.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.departments = _departmentService.GetAll();
+            ViewBag.Departments= _departmentService.GetAll();
             return View();
         }
         [HttpPost]
-        public IActionResult Create(EmployeeDto employee)
+        public IActionResult Create(EmployeeDto employeeDto)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _employeeService.Add(employee);
-                    return RedirectToAction("Index");
+                    _employeeService.Add(employeeDto);
+                    //return RedirectToAction("Index");
+                   return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                  //  ModelState.AddModelError("EmployeeError", "ValidationError");
-                    return View(employee);
+                    ModelState.AddModelError("EmployeeError", "ValidationError");
+                    return View(employeeDto);
                 }
             }
             catch (Exception ex) 
             {
-               // ModelState.AddModelError("EmployeeError", ex.Message);
-                return View(employee);
+                ModelState.AddModelError("EmployeeError", ex.Message);
+                return View(employeeDto);
             }
            
         }

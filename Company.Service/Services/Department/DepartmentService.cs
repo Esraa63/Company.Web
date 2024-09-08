@@ -50,13 +50,13 @@ namespace Company.Service.Services
 
         public IEnumerable<DepartmentDto> GetAll()
         {
-            var departments = _unitOfWork.DepartmentRepository.GetAll(); ;
             //var mappedDepartments = departments.Select(x => new DepartmentDto
             //{
             //    Code= x.Code,
             //    Name= x.Name,
             //    CreateAt= x.CreateAt
             //});
+            var departments = _unitOfWork.DepartmentRepository.GetAll(); ;
             var mappedDepartments =_mapper.Map<IEnumerable<DepartmentDto>>(departments);
             return mappedDepartments;
         }
