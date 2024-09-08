@@ -38,7 +38,7 @@ namespace Company.Service.Services
             //    Salary = employeeDto.Salary
             //};
 
-            employeeDto.ImageUrl = DocumentSettings.UploadFile(employeeDto.Image, "Iamges");
+            employeeDto.ImageUrl = DocumentSettings.UploadFile(employeeDto.Image, "Images");
             Employee employee = _mapper.Map<Employee>(employeeDto);       
             _unitOfWork.EmployeeRepository.Add(employee);
             _unitOfWork.Complete();
@@ -64,7 +64,6 @@ namespace Company.Service.Services
         }
         IEnumerable<EmployeeDto> IEmployeeService.GetAll()
         {
-            var employees = _unitOfWork.EmployeeRepository.GetAll();
             //var mappedEmployess = employees.Select(x => new EmployeeDto
             //{
             //    DepartmentId=x.DepartmentId,
@@ -77,7 +76,8 @@ namespace Company.Service.Services
             //    Salary = x.Salary,
             //    Id = x.Id
             //});
-           IEnumerable<EmployeeDto> mappedEmployess = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
+            var employees = _unitOfWork.EmployeeRepository.GetAll();
+            var mappedEmployess = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
             return mappedEmployess;
         }
 
