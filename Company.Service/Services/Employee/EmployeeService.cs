@@ -124,7 +124,6 @@ namespace Company.Service.Services
 
         public IEnumerable<EmployeeDto> GetEmployeeByName(string name)
         {
-          var employees = _unitOfWork.EmployeeRepository.GetEmployeeByName(name);
             //var mappedEmployess = employees.Select(x => new EmployeeDto
             //{
             //    DepartmentId = x.DepartmentId,
@@ -137,6 +136,7 @@ namespace Company.Service.Services
             //    Salary = x.Salary,
             //    Id = x.Id
             //});
+            var employees = _unitOfWork.EmployeeRepository.GetEmployeeByName(name);
             IEnumerable<EmployeeDto> mappedEmployess = _mapper.Map<IEnumerable<EmployeeDto>>(employees);
             return mappedEmployess;
         }
