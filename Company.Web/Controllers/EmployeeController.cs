@@ -1,6 +1,7 @@
 ﻿using Company.Data.Entites;
 using Company.Service.InterFaces;
 using Company.Service.InterFaces.Employee.Dto;
+using Company.Service.Services;
 using Company.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,30 +11,33 @@ namespace Company.Web.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly IDepartmentService _departmentService;
-        public EmployeeController(IEmployeeService employeeService , IDepartmentService departmentService)
+        public EmployeeController(IEmployeeService employeeService, IDepartmentService departmentService)
         {
             _employeeService = employeeService;
             _departmentService = departmentService;
         }
-        public IActionResult Index( string searchIndex)
+        public IActionResult Index(string searchIndex)
         {
             //ViewBag , ViewData , TempData
             //ViewBag.Message = "Hello From Employee Index (View Bag)";
             //ViewData["TextMessage"]= "Hello From Employee Index (View Data)";
-            
+            //ViewBag , ViewData , TempData
+            //ViewBag.Message = "Hello From Employee Index (View Bag)";
+            //ViewData["TextMessage"]= "Hello From Employee Index (View Data)";
+
             IEnumerable<EmployeeDto> employees = new List<EmployeeDto>();
             if (string.IsNullOrEmpty(searchIndex))
                 employees = _employeeService.GetAll();
             else
-             employees = _employeeService.GetEmployeeByName(searchIndex);
-              
+                employees = _employeeService.GetEmployeeByName(searchIndex);
+
             return View(employees);
-            
+
         }
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Departments= _departmentService.GetAll();
+            ViewBag.Departments = _departmentService.GetAll();
             return View();
         }
         [HttpPost]
@@ -45,7 +49,7 @@ namespace Company.Web.Controllers
                 {
                     _employeeService.Add(employeeDto);
                     //return RedirectToAction("Index");
-                   return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -53,21 +57,36 @@ namespace Company.Web.Controllers
                     return View(employeeDto);
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ModelState.AddModelError("EmployeeError", ex.Message);
                 return View(employeeDto);
             }
-           
+
+        }
+        public IActionResult Details(int? id, string viewName = "Details")
+        {
+            var employee = _employeeService.GetById(id);
+
+            if (employee is null)
+                return RedirectToAction("NotFoundPage", null, "Home");
+
+            return View(viewName, employee);
         }
         //[HttpPost]
         //public IActionResult Update()
         //{
+        // }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var employee = _employeeService.GetById(id);
 
-        //}
-        //[HttpPost]
-        //public IActionResult Delete() 
-        //{
-        //}
+            if (employee is null)
+                return RedirectToAction("NotFoundPage", null, "Home");
+            _employeeService.Delete(employee);
+            return RedirectToAction(nameof(Index));
+        }
     }
+
 }

@@ -68,6 +68,7 @@ namespace Company.Web.Controllers
                 _departmentService.Update(department);
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
         public IActionResult Delete(int id) 
         {
             var department = _departmentService.GetById(id);
