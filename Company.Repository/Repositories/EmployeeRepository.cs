@@ -1,5 +1,5 @@
 ﻿using Company.Data.Contexts;
-using Company.Data.Entitis;
+using Company.Data.Entites;
 using Company.Repository.Interfaces;
 
 namespace Company.Repository.Repositories

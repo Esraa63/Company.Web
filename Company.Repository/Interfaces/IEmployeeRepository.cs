@@ -1,4 +1,4 @@
-﻿using Company.Data.Entitis;
+﻿using Company.Data.Entites;
 
 namespace Company.Repository.Interfaces
 {
