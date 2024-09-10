@@ -40,6 +40,7 @@ namespace Company.Web
                    config.Password.RequireLowercase = true;
                    config.Password.RequireUppercase = true;
                    config.Password.RequireNonAlphanumeric = true;
+                   config.Password.RequiredLength = 6;
                    config.User.RequireUniqueEmail = true;
                    config.Lockout.AllowedForNewUsers = true;
                    config.Lockout.MaxFailedAccessAttempts = 3;
