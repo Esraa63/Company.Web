@@ -1,11 +1,6 @@
 ﻿using Company.Data.Contexts;
-using Company.Data.Entites;
+using Company.Data.Entitis;
 using Company.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Company.Repository.Repositories
 {
@@ -29,5 +24,7 @@ namespace Company.Repository.Repositories
         {
             throw new NotImplementedException();
         }
+
+   
     }
 }
