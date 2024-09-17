@@ -1,4 +1,5 @@
 ﻿using Company.Data.Entites;
+using Company.Data.Migrations;
 using Company.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -83,5 +84,26 @@ namespace Company.Web.Controllers
             return RedirectToAction("SignIn");
         }
 		#endregion
+
+		public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+		public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel input)
+        {
+			if (ModelState.IsValid)
+			{
+				var user = await _userManager.FindByEmailAsync(input.Email);
+				if (user is not null)
+				{
+					var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var url = Url.Action("ResetPassword","Account", new {Email = input.Email , Token = token} , Request.Scheme);
+						
+				}
+				ModelState.AddModelError("", "Incorrect email or password");
+				return View(input);
+			}
+			return View(input);
+		}
 	}
 }

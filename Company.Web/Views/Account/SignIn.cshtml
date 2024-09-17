@@ -12,11 +12,13 @@
 		<input type="text" class="login__input" asp-for="Email" placeholder="User name / Email" >
 	</div>
 	<span asp-validation-for="Email"></span>
+
 	<div class="login__field">
 		<i class="login__icon fas fa-lock"></i>
 		<input type="password" class="login__input" asp-for="Password" placeholder="Password" >
 	</div>
 	<span asp-validation-for="Password"></span>
+
 	<div class="wthree-text">
 		<label class="anim">
 			<input type="checkbox"  asp-for="RememberMe" />
