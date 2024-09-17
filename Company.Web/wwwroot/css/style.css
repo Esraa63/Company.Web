@@ -86,12 +86,12 @@ body {
 
 .login {
 	width: 320px;
-	padding: 30px;
-	padding-top: 156px;
+	padding: 15px;
+	/*padding-top: 156px;*/
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 17px 0px;	
 	position: relative;	
 }
 
@@ -122,8 +122,9 @@ body {
 .login__submit {
 	background: #fff;
 	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
+	margin-top: 16px;
+	margin-bottom : 2px;
+	padding: 12px 12px;
 	border-radius: 26px;
 	border: 1px solid #D4D3E8;
 	text-transform: uppercase;
