@@ -5,32 +5,32 @@
 }
 
 <h1 style="color : rgb(120, 117, 181);">SignUp</h1>
-<form asp-action="SignUp" method="post" class="login">
-	<div class="login__field">
+<form asp-action="SignUp" method="post" class="signUp">
+	<div class="signUp__field">
 		<i class="login__icon fas fa-user"></i>
 		<input type="text" class="login__input" asp-for="FirstName" placeholder="FirstName" />
 	</div>
 	<span asp-validation-for="FirstName"></span>
 
-	   <div class="login__field">
+	<div class="signUp__field">
 		<i class="login__icon fas fa-user"></i>
 		<input type="text" class="login__input" asp-for="LastName" placeholder="LastName" />
 		</div>
 	<span asp-validation-for="LastName"></span>
 
-	<div class="login__field">
+	<div class="signUp__field">
 		<i class="login__icon fas fa-envelope"></i>
 		<input type="Email" class="login__input" asp-for="Email" placeholder="Email" />
 	</div>
 	<span asp-validation-for="Email"></span>
 
-	<div class="login__field">
+	<div class="signUp__field">
 		<i class="login__icon fas fa-lock"></i>
 		<input type="password" class="login__input" asp-for="Password" placeholder="Password">
 	</div>
 	<span asp-validation-for="Password"></span>
 
-	<div class="login__field">
+	<div class="signUp__field">
 		<i class="login__icon fas fa-lock"></i>
 		<input type="password" class="login__input" asp-for="ConfirmPassword" placeholder="ConfirmPassword">
 	</div>
@@ -47,7 +47,7 @@
 		<span class="button__text">Sign Up</span>
 		<i class="button__icon fas fa-chevron-right"></i>
 	</button>
-	<p style="color : white;">Do you have an Account? <a asp-action="Login">Login Now</a> </p>
+	<p style="color : white;">Do you have an Account? <a asp-action="SignIn">Login Now</a> </p>
 </form>
 @* <div asp-validation-summary="All"> </div> *@
 

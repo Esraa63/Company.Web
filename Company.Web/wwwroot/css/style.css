@@ -86,13 +86,22 @@ body {
 
 .login {
 	width: 320px;
+	padding: 30px;
+	padding-top: 156px;
+}
+.signUp {
+	width: 320px;
 	padding: 15px;
 	/*padding-top: 156px;*/
 }
+.signUp__field {
+	padding: 17px 0px;
+	position: relative;
+}
 
 .login__field {
-	padding: 17px 0px;	
-	position: relative;	
+	padding: 20px 0px;
+	position: relative;
 }
 
 .login__icon {
