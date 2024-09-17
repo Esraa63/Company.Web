@@ -75,5 +75,13 @@ namespace Company.Web.Controllers
 			return View(input);
 		}
 		#endregion
+
+		#region SignOut
+		public async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn");
+        }
+		#endregion
 	}
 }
