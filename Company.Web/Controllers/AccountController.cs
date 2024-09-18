@@ -4,6 +4,7 @@ using Company.Service.Helper;
 using Company.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace Company.Web.Controllers
 {
@@ -119,5 +120,27 @@ namespace Company.Web.Controllers
         {
             return View();
         }
-	}
+        public IActionResult ResetPassword(string Email, string Token)
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel input)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(input.Email);
+                if (user is not null)
+                {
+                    var result = await _userManager.ResetPasswordAsync(user , input.Token , input.Password);
+                    if (result.Succeeded)
+                        return RedirectToAction("SignIn");
+                    foreach (var error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
+
+                }
+            }
+            return View(input);
+        }
+    }
 }
