@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Company.Data.Entites;
+using Microsoft.AspNetCore.Identity;
 namespace Company.Data.Contexts
 {
     public class CompanyDbContext: IdentityDbContext<ApplicationUser>
@@ -17,7 +18,7 @@ namespace Company.Data.Contexts
         }
         public CompanyDbContext(DbContextOptions<CompanyDbContext > options): base(options) 
         {
-
+            
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
