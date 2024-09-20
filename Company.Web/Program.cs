@@ -6,7 +6,6 @@ using Company.Service.InterFaces;
 using Company.Service.Services;
 using Company.Service.Mapping;
 using Company.Data.Entites;
-using Company.Service.Mapping;
 using Microsoft.AspNetCore.Identity;
 
 namespace Company.Web
@@ -82,7 +81,7 @@ namespace Company.Web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=SignUp}");
+                pattern: "{controller=Home}/{action=Index}");
               app.Run();
 
         }
