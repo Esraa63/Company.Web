@@ -83,5 +83,30 @@ namespace Company.Web.Controllers
      
              return View(applicationUser);
         }
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id);
+                if (user is null)
+                    return NotFound();
+                var result = await _userManager.UpdateAsync(user);
+               // user.IsDeleted = true;
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User Updated Successfully");
+                    return RedirectToAction("Index");
+                }
+                foreach (var err in result.Errors)
+                    _logger.LogError(err.Description);
+
+            }
+            catch (Exception ex) 
+            {
+                _logger.LogError(ex.Message);
+            }
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
