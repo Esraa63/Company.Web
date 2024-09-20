@@ -78,10 +78,11 @@ namespace Company.Service.Services
             return mappedDepartments;
         }
 
-        public void Update(DepartmentDto department)
+        public void Update(DepartmentDto departmentDto)
         {
-            //_unitOfWork.DepartmentRepository.Update(department);
-            //_unitOfWork.Complete();
+			var mappedDepartment = _mapper.Map<Department>(departmentDto);
+			_unitOfWork.DepartmentRepository.Update(mappedDepartment);
+            _unitOfWork.Complete();
         }
 
     }

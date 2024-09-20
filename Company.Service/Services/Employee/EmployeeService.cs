@@ -3,6 +3,7 @@ using Company.Data.Entites;
 using Company.Repository.Interfaces;
 using Company.Service.Helper;
 using Company.Service.InterFaces;
+using Company.Service.InterFaces.Department.Dto;
 using Company.Service.InterFaces.Employee.Dto;
 using System;
 using System.Collections.Generic;
@@ -141,9 +142,11 @@ namespace Company.Service.Services
             return mappedEmployess;
         }
 
-        public void Update(EmployeeDto employee)
+        public void Update(EmployeeDto employeeDto)
         {
-            throw new NotImplementedException();
+            var mappedEmployee = _mapper.Map<Employee>(employeeDto);
+            _unitOfWork.EmployeeRepository.Update(mappedEmployee);
+            _unitOfWork.Complete();
         }
     }
 }

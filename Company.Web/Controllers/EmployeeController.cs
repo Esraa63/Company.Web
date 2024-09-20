@@ -74,11 +74,20 @@ namespace Company.Web.Controllers
 
             return View(viewName, employee);
         }
-        //[HttpPost]
-        //public IActionResult Update()
-        //{
-        // }
+        [HttpGet]
+        public IActionResult Update(int? id)
+        {
+            return Details(id, "Update");
+        }
         [HttpPost]
+        public IActionResult Update(int? id, EmployeeDto employeeDto)
+        {
+            if (employeeDto.Id != id.Value)
+                return RedirectToAction("NotFoundPage", null, "Home");
+            _employeeService.Update(employeeDto);
+            return RedirectToAction(nameof(Index));
+        }
+        //[HttpPost]
         public IActionResult Delete(int id)
         {
             var employee = _employeeService.GetById(id);
