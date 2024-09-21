@@ -1,4 +1,5 @@
-﻿using Company.Web.Models;
+﻿using Company.Data.Entites;
+using Company.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +10,15 @@ namespace Company.Web.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger _logger;
-        public RoleController(RoleManager<IdentityRole> roleManager, ILogger<RoleController> logger)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public RoleController(RoleManager<IdentityRole> roleManager
+            , ILogger<RoleController> logger,
+              UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
             _logger = logger;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
@@ -47,11 +53,11 @@ namespace Company.Web.Controllers
 
             if (role is null)
                 return NotFound();
-             var roleViewModel = new RoleViewModel
-                {
-                    Id = role.Id,
-                    Name = role.Name,
-                };
+            var roleViewModel = new RoleViewModel
+            {
+                Id = role.Id,
+                Name = role.Name,
+            };
             return View(viewName, roleViewModel);
         }
         [HttpGet]
@@ -113,6 +119,29 @@ namespace Company.Web.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> AddOrRemoveUsers(string roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role is null)
+                return NotFound();
+            var users = await _userManager.Users.ToListAsync();
+            var usersInRole = new List<UserInRoleViewModel>();
+            foreach (var user in users)
+            {
+                var userInRole = new UserInRoleViewModel
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName
+                };
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                    userInRole.IsSelected = true;
+                else
+                    userInRole.IsSelected = false;
+                usersInRole.Add(userInRole);
+            }
+            return View(usersInRole);
         }
     }
 }
