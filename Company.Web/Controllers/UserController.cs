@@ -1,12 +1,14 @@
 ﻿using Company.Data.Entites;
 using Company.Service.InterFaces.Department.Dto;
 using Company.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Company.Web.Controllers
 {
+    [Authorize (Roles ="Admin")]
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

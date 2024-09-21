@@ -53,8 +53,8 @@ namespace Company.Web
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.SlidingExpiration = true;
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
+                options.LoginPath = "/Account/SignIn";
+                options.LogoutPath = "/Account/SignOut";
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookie.Name = "Cookies";
                 options.Cookie.SecurePolicy= CookieSecurePolicy.Always;
@@ -81,7 +81,7 @@ namespace Company.Web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "{controller=Account}/{action=SignUp}");
               app.Run();
 
         }
