@@ -6,7 +6,6 @@ using Company.Service.InterFaces;
 using Company.Service.Services;
 using Company.Service.Mapping;
 using Company.Data.Entites;
-using Company.Service.Mapping;
 using Microsoft.AspNetCore.Identity;
 
 namespace Company.Web
@@ -54,8 +53,8 @@ namespace Company.Web
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.SlidingExpiration = true;
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
+                options.LoginPath = "/Account/SignIn";
+                options.LogoutPath = "/Account/SignOut";
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.Cookie.Name = "Cookies";
                 options.Cookie.SecurePolicy= CookieSecurePolicy.Always;

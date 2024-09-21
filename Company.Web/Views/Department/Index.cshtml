@@ -23,7 +23,7 @@
                     <td>@department.Code</td>
                     <td>@department.Name</td>
                     <td>@department.CreateAt</td>
-                    <partial model="@department.Id" name="_ActionButtonsPartialView" />
+                    <partial model="@department.Id.ToString()" name="_ActionButtonsPartialView" />
                 </tr>
             }
         </tbody>
