@@ -126,6 +126,7 @@ namespace Company.Web.Controllers
             var role = await _roleManager.FindByIdAsync(roleId);
             if (role is null)
                 return NotFound();
+            ViewBag.RoleId = roleId;
             var users = await _userManager.Users.ToListAsync();
             var usersInRole = new List<UserInRoleViewModel>();
             foreach (var user in users)
@@ -142,6 +143,29 @@ namespace Company.Web.Controllers
                 usersInRole.Add(userInRole);
             }
             return View(usersInRole);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddOrRemoveUsers(string roleId, List<UserInRoleViewModel> users)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            if (role is null)
+                return NotFound();
+            if(ModelState.IsValid)
+            {
+                foreach (var user in users)
+                {
+                    var appUser = await _userManager.FindByIdAsync(user.UserId);
+                    if (appUser is not null)
+                    {
+                        if (user.IsSelected && !await _userManager.IsInRoleAsync(appUser, role.Name))
+                            await _userManager.AddToRoleAsync(appUser,role.Name);
+                        else if(!user.IsSelected && await _userManager.IsInRoleAsync(appUser, role.Name))
+                            await _userManager.RemoveFromRoleAsync(appUser, role.Name);
+                    }
+                }
+                return RedirectToAction("Update", new {id = roleId});
+            }
+            return View(users);
         }
     }
 }
